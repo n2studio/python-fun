@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+# fibonacci sequence
+# give it how many iterations you want to run it
+
 def fib(iterations):
     a,b = 1,1
 
