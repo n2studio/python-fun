@@ -29,6 +29,6 @@ def piNila(iterations):
 
 piNila(50)
 # Now print the real value of pi for comparison ... 
-print("pi : %.10f" % (math.pi))
+print("pi : %.10f" % math.pi)
 print("Note that even after 50 iterations, the Nilakantha series is only accurate to 5 decimal places. ")
 print("100 iterations will yield accuracy to 6 decimal places.")
