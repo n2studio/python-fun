@@ -7,30 +7,32 @@
 import requests 
   
 def GetRequest(theURL, theParams):
-	try:
-		response = requests.get(theURL, params = theParams)
-		# If the response was successful, no Exception will be raised
-		response.raise_for_status()
-	except HTTPError as http_err:
-		print(f'HTTP error occurred: {http_err}')  # Python 3.6
-	except Exception as err:
-		print(f'Other error occurred: {err}')  # Python 3.6
-	else:
-		#responseText = response.text
-		responseJson = response.json()
-		
-		# On Windows the encoding is likely utf-8, which can cause problems
-		# For example the "TM" unicode symbol will cause an exception
-		# Verify encoding with this: 
-		print(response.encoding) 
-		
-		# The rest of this code is specific to the Github json schema ...
-		# Update accordingly depending on expected schema of the response.
-		repository = responseJson['items'][2]
-		print(f'Repository name: {repository["name"]}')  # Python 3.6+
-		print(f'Repository description: {repository["description"]}')  # Python 3.6+
-		
-		
+    try:
+        response = requests.get(theURL, params = theParams)
+        # If the response was successful, no Exception will be raised
+        response.raise_for_status()
+    except HTTPError as http_err:
+        print(f'HTTP error occurred: {http_err}')  # Python 3.6
+    except Exception as err:
+        print(f'Other error occurred: {err}')  # Python 3.6
+    else:
+        #responseText = response.text
+        responseJson = response.json()
+
+        # On Windows the encoding is likely utf-8, which can cause problems
+        # For example the "TM" unicode symbol will cause an exception
+        # Verify encoding with this:
+        print(response.encoding)
+
+        # The rest of this code is specific to the Github json schema ...
+        # Update accordingly depending on expected schema of the response.
+        for x in range(10):
+            repository = responseJson['items'][x]
+            print(f'Repository name: {repository["name"]}')  # Python 3.6+
+            print(f'Repository description: {repository["description"]}')  # Python 3.6+
+            print()
+
+
 # api-endpoint 
 # https://api.github.com/search/repositories?q=requests&language=python
 api_url = 'https://api.github.com/search/repositories'
