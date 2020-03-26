@@ -6,7 +6,7 @@
 
 import requests 
   
-def GetRequest(theURL, theParams):
+def GetRequest(theURL, theParams, theMax):
     try:
         response = requests.get(theURL, params = theParams)
         # If the response was successful, no Exception will be raised
@@ -19,23 +19,36 @@ def GetRequest(theURL, theParams):
         #responseText = response.text
         responseJson = response.json()
 
-        # On Windows the encoding is likely utf-8, which can cause problems
+        # On Windows DOS prompt the encoding is likely utf-8, which can cause problems
         # For example the "TM" unicode symbol will cause an exception
         # Verify encoding with this:
-        print(response.encoding)
+        print(f'encoding: {response.encoding}')
 
         # The rest of this code is specific to the Github json schema ...
         # Update accordingly depending on expected schema of the response.
-        for x in range(10):
+        print('================================')
+        # Some sites will return a limited number by default
+        numPerPage = len(responseJson['items'])
+        if theMax > numPerPage:
+            theMax = numPerPage
+        print(f"Number of projects in response for {theParams}: {numPerPage}")
+        print(f'Listing first {theMax} items:')
+        print()
+        for x in range(theMax):
             repository = responseJson['items'][x]
-            print(f'Repository name: {repository["name"]}')  # Python 3.6+
-            print(f'Repository description: {repository["description"]}')  # Python 3.6+
+            repoName = repository["name"]
+            repoDescr = repository["description"]
+            # repoDescr = repoDescr.encode('unicode_escape')
+            print(f'{x+1}. Repository name: {repoName}')  # Python 3.6+
+            print(f'    Repository description: {repoDescr}')  # Python 3.6+
             print()
+        print('================================')
 
 
 # api-endpoint 
 # https://api.github.com/search/repositories?q=requests&language=python
 api_url = 'https://api.github.com/search/repositories'
 parameters = {'q': 'requests+language:python'}
+listLimit = 15
 
-GetRequest(api_url, parameters)
+GetRequest(api_url, parameters, listLimit)
