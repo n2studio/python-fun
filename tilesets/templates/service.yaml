@@ -7,8 +7,8 @@ metadata:
 spec:
   selector:
     app: {{ .Values.deployment.appLabel }}
-  #ports:
-    #- name: http
-      #port: 8080
-      #protocol: TCP
-      #targetPort: 8080
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
