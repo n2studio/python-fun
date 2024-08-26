@@ -6,4 +6,4 @@ metadata:
 
 data:
   "marble512.mbtile.txt"{{printf ": |-"}}
-{{ .Files.Get "files" "marble512.mbtile.txt" | indent 4 }}
+{{ .Files.Get "marble512.mbtile.txt" | indent 4 }}
