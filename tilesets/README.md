@@ -12,3 +12,8 @@ kubectl get pvc | grep tilesets  # assuming it's called 'tilesets-pvc'
 kubectl get pods | grep tilesets  # assuming it's called 'tilesets'
 kubectl exec <pod name from above> -- ls -la /tiled/tilesets/  #verify mountpoint
 ```
+### Deleting the PVC if necessary
+
+```
+kubectl delete pvc -n <namespace> tilesets-pv-claim --grace-period=0 --force
+```

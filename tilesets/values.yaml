@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 deployment:
-  image: /_/alpine   # https://artifacts.trmc.osd.mil/ui/repos/tree/General/minerva-docker/ironbank/ubi/ubi8-minimal/8.5
+  image: /alpine   # https://artifacts.trmc.osd.mil/ui/repos/tree/General/minerva-docker/ironbank/ubi/ubi8-minimal/8.5
   tag: 3.20.2
   appLabel: tilesets
   storageSize: 40Gi
@@ -15,7 +15,7 @@ tilesetsPVC:
     pvcSize: 60Gi
 
 #To be overridden
-#imagePullSecrets: artifacts.trmc.osd.mil-minerva-docker
+imagePullSecrets: neil-dockerhub-image-pull-secret
 imagePullUrl: hub.docker.com    # artifacts.trmc.osd.mil/minerva-docker
 tilesetUrl: https://github.com/n2studio/python-fun/blob/master/fib.py
 tilesetsDir: /tiled/tilesets
