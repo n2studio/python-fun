@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.tilesetsPVC.appLabel }}
+  annotations:
+    helm.sh/resource-policy: keep
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: {{ .Values.tilesetsPVC.tilesetsPV.storageClass }}
+  resources:
+    requests:
+      storage: {{ .Values.tilesetsPVC.tilesetsPV.pvcSize }}
+

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.appLabel }}
+  labels:
+    app: {{ .Values.deployment.appLabel }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.appLabel }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.appLabel }}
+    spec:
+      #imagePullSecrets:
+        #- name: {{ .Values.imagePullSecrets }}
+      containers:
+        - env:
+          image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
+          imagePullPolicy: Always
+          name: {{ .Values.deployment.appLabel }}
+          #ports:
+            #- containerPort: 8080  # not really needed for this
+          resources:
+            limits:
+              cpu: 400m
+              memory: 4Gi
+            requests:
+              cpu: 200m
+              memory: 1Gi
+          volumeMounts:
+            - mountPath: /tiled/tilesets
+              name: {{ .Values.deployment.appLabel }}-pv-storage
+            - mountPath: /tiled/config
+              name: {{ .Release.Name }}-config
+          command: ["/usr/bin/wget","--no-check-certificate","{{ .Values.tilesetURL }}"]
+      restartPolicy: Always
+      volumes:
+        - name: {{ .Values.deployment.appLabel }}-pv-storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.deployment.appLabel }}-pv-claim
+        - name: {{ .Release.Name }}-config
+          configMap:
+            name: {{ .Release.Name }}-configmap
