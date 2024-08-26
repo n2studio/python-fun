@@ -5,4 +5,4 @@ metadata:
 # Data limit is 1MB
 data:
   marble512.mbtile.txt" |-
-{{ .Files.Get "marble512.mbtile.txt" | indent 4 }
+{{ .Files.Get "marble512.mbtile.txt" | indent 4 }}
