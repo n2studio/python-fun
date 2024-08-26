@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
 # Data limit is 1MB
+
 data:
   "marble512.mbtile.txt"{{printf ": |-"}}
-{{ .files.Get "files" "marble512.mbtile.txt" | indent 4 }}
+{{ .Files.Get "files" "marble512.mbtile.txt" | indent 4 }}
