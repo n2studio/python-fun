@@ -12,7 +12,7 @@ tilesetsPVC:
   appLabel: tilesets-pv-claim
   tilesetsPV:
     storageClass: glusterfs-storage-minerva-retain
-    pvcSize: 60Gi
+    pvcSize: 40Gi
 
 #To be overridden
 imagePullSecrets: neil-dockerhub-image-pull-secret
