@@ -14,8 +14,8 @@ kubectl exec <pod name from above> -- ls -la /tiled/tilesets/  #verify mountpoin
 ### Deleting the Pod and PVC if necessary
 ```
 helm delete tilesets
-kubectl delete pvc -n <namespace> tilesets-pv-claim --grace-period=0 --force
-# oc delete pvc -n minerva-dev tilesets-pv-claim --grace-period=0 --force
+oc delete pvc -n minerva-dev tilesets-pv-claim --grace-period=0 --force
+# kubectl delete pvc -n <namespace> tilesets-pv-claim --grace-period=0 --force
 ```
 
 ### Deploy the helm chart
