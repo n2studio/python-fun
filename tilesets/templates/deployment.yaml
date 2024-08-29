@@ -14,12 +14,12 @@ spec:
       labels:
         app: {{ .Values.deployment.appLabel }}
     spec:
-      #imagePullSecrets:
-        #- name: {{ .Values.imagePullSecrets }}
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets }}
       containers:
         - env:
           image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           name: {{ .Values.deployment.appLabel }}
           ports:
             - containerPort: 8080
@@ -40,7 +40,7 @@ spec:
       volumes:
         - name: {{ .Values.deployment.appLabel }}-pv-storage
           persistentVolumeClaim:
-            claimName: {{ .Values.deployment.appLabel }}-pv-claim
+            claimName: {{ .Values.tilesetsPVC.appLabel }}
         - name: {{ .Release.Name }}-config
           configMap:
             name: {{ .Release.Name }}-configmap
