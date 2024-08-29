@@ -7,10 +7,12 @@ deployment:
   tag: 1.21.6
   appLabel: tilesets
   storageSize: 40Gi
+  namespace: minerva-dev
 
 tilesetsPVC:
   appLabel: tilesets-pv-claim
   tilesetsPV:
+    pvName: tilesets-pv
     storageClass: glusterfs-storage-minerva-retain
     pvcSize: 40Gi
 
