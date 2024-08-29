@@ -4,7 +4,7 @@
 
 deployment:
   image: ironbank/ironbank-nginx
-  tag: 1.26.1
+  tag: 1.21.6
   appLabel: tilesets
   storageSize: 40Gi
 
