@@ -13,7 +13,7 @@ tilesetsPVC:
   appLabel: tilesets-pv-claim
   tilesetsPV:
     pvName: tilesets-pv
-    storageClass: glusterfs-storage-minerva-retain
+    storageClass: glusterfs-storage-retain  #glusterfs-storage-minerva-retain
     pvcSize: 20Gi
 
 #To be overridden
