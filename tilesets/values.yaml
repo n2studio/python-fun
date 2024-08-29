@@ -17,7 +17,7 @@ tilesetsPVC:
 #To be overridden
 imagePullSecrets: artifacts.trmc.osd.mil-minerva-docker   #neil-dockerhub-image-pull-secret
 #imagePullUrl: docker-registry.default.svc:5000/minerva-dev/  # docker.io/library/   
-imagePullUrl: https://artifacts.trmc.osd.mil/minerva-docker/
+imagePullUrl: artifacts.trmc.osd.mil/minerva-docker/
 tilesetUrl: http://www.n2studio.com/home/homeart1.jpg
 tilesetsDir: /tiled/tilesets
 #ocpLoadBalancer: ocp-lb3.dev26.minerva.navy.mil
