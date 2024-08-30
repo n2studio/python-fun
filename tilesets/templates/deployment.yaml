@@ -21,8 +21,8 @@ spec:
           image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
           imagePullPolicy: IfNotPresent
           name: {{ .Values.deployment.appLabel }}
-          ports:
-            - containerPort: 8080
+          #ports:
+          #  - containerPort: 8080
           resources:
             limits:
               cpu: 500m
@@ -37,7 +37,7 @@ spec:
               name: {{ .Release.Name }}-config
           # Using command will override the default commands in the container image.
           command: ["cat"]
-          args: ["-n", "/tiled/config/^*"]
+          args: ["-n", "/tiled/config/marble512.mbtile.txt"]
       restartPolicy: Always
       volumes:
         - name: {{ .Values.deployment.appLabel }}-pv-storage
