@@ -26,9 +26,9 @@ spec:
           resources:
             limits:
               cpu: 400m
-              memory: 4Gi
+              memory: 2Gi
             requests:
-              cpu: 200m
+              cpu: 100m
               memory: 1Gi
           volumeMounts:
             - mountPath: /tiled/tilesets
@@ -36,7 +36,8 @@ spec:
             - mountPath: /tiled/config
               name: {{ .Release.Name }}-config
           #command: ["/usr/bin/wget","--no-check-certificate","{{ .Values.tilesetURL }}"]
-          command: ["ls","-lah","/tiled/config"]
+          command: ["ls"]
+          args: ["-lah", "/tiled/config"]
       restartPolicy: Always
       volumes:
         - name: {{ .Values.deployment.appLabel }}-pv-storage

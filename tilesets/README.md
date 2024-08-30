@@ -8,7 +8,7 @@ This helm chart will create a minimal pod with a PVC containing at least one til
 ### Check if the PVC already exists and contains data
 ```
 kubectl get pvc | grep tilesets  # assuming it's called 'tilesets-pvc'
-kubectl get pods | grep tilesets  # assuming it's called 'tilesets'
+kubectl get pods | grep tilesets  # assuming it's called 'tilesets-*'
 kubectl exec <pod name from above> -- ls -la /tiled/tilesets/  #verify mountpoint
 ```
 ### Deleting the Pod and PVC if necessary
