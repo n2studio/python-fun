@@ -1,4 +1,4 @@
-# Map Tiles PVC
+# Tilesets Helm Chart
 
 ## Overview
 This helm chart is a proof of concept showing the use of an initContainer to copy data into a mounted PVC, the initContainer then shuts down, and then the main container will start up with the same PVC mounted and data available for it to use. 
