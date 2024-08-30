@@ -36,8 +36,8 @@ spec:
             - mountPath: /tiled/config
               name: {{ .Release.Name }}-config
           # Using command will override the default commands in the container image.
-          command: ["cat"]
-          args: ["-n", "/tiled/config/marble512.mbtile.txt"]
+          command: ["df"]
+          args: ["-h"]
       restartPolicy: Always
       volumes:
         - name: {{ .Values.deployment.appLabel }}-pv-storage
