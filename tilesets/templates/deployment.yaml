@@ -21,8 +21,8 @@ spec:
           image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
           imagePullPolicy: IfNotPresent
           name: {{ .Values.deployment.appLabel }}
-          #ports:
-          #  - containerPort: 8080
+          ports:
+            - containerPort: 8080
           resources:
             limits:
               cpu: 500m
