@@ -35,9 +35,8 @@ spec:
               name: {{ .Values.deployment.appLabel }}-pv-storage
             - mountPath: /tiled/config
               name: {{ .Release.Name }}-config
-          # Using command will override the default commands in the container image.
-          #command: ["df"]
-          #args: ["-h"]
+          # Using command will override the default commands in the container image
+          command: ["sh", "-c", "df -h;"]
       restartPolicy: Always
       volumes:
         - name: {{ .Values.deployment.appLabel }}-pv-storage
