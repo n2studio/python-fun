@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 
 deployment:
-  image: docker.io/busybox
-  tag: 1.32
+  image: docker.io/ubuntu
+  tag: 20.04
   appLabel: tilesets
   #storageSize: 20Gi
   namespace: minerva-dev
