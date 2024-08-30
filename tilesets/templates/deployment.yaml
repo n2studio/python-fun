@@ -19,12 +19,13 @@ spec:
       initContainers:
         - name: download-tilesets
           image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
-          command: ["sh", "-c", "uname -a; df -h;"]
+          # proof of concept showing use of wget to copy data into the pvc mount
+          command: ["sh", "-c", "uname -a; df -h; wget -P /tiled/tilesets http://www.n2studio.com/home/homeart1.jpg; ls -lah /tiled/tilesets/"]
           volumeMounts:
             - mountPath: /tiled/tilesets
               name: {{ .Values.deployment.appLabel }}-pv-storage
       containers:
-        - env:
+        - env:   # The container below could be the lattice tiled container that just mounts the pvc that we wrote the file to above
           image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
           imagePullPolicy: IfNotPresent
           name: {{ .Values.deployment.appLabel }}
@@ -43,6 +44,7 @@ spec:
             - mountPath: /tiled/config
               name: {{ .Release.Name }}-config
           # Using command will override the default commands in the container image
+          # The 'tail -f dev/null' is to keep the container running otherwise it has nothing to do and stops
           command: ["sh", "-c", "uname -a; df -h; tail -f /dev/null;"]
       restartPolicy: Always
       volumes:
