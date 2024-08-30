@@ -1,11 +1,15 @@
 # Map Tiles PVC
 
-**_NOTE:_** The Lattice platform and helm chart depends on this tileset being in place and assumes the pvc called 'tilesets-pvc' is available to be mounted. Otherwise, the "tiled" pod will fail to start without any tilesets.
-
 ## Overview
-This helm chart will create a minimal pod with a PVC containing at least one tileset (e.g. marble512.mbtile) that other pods can then mount and use. 
+This helm chart is a proof of concept showing the use of an initContainer to copy data into a mounted PVC, the initContainer then shuts down, and then the main container will start up with the same PVC mounted and data available for it to use. 
 
-### Check if the PVC already exists and contains data
+### Deploy the helm chart
+```
+# From outside the tilesets chart directory
+helm install tilesets ./tilesets
+```
+
+### Check if the PVC exists and contains data
 ```
 kubectl get pvc | grep tilesets  # assuming it's called 'tilesets-pvc'
 kubectl get pods | grep tilesets  # assuming it's called 'tilesets-*'
@@ -15,12 +19,6 @@ kubectl exec <pod name from above> -- ls -la /tiled/tilesets/  #verify mountpoin
 ```
 helm delete tilesets
 # don't need to delete the pvc if planning to reinstall, but command is here for reference
-oc delete pvc -n minerva-dev tilesets-pv-claim #--grace-period=0 --force
-# kubectl delete pvc -n <namespace> tilesets-pv-claim #--grace-period=0 --force
+kubectl delete pvc tilesets-pv-claim   # you might also need '-n <namespace>' 
 ```
 
-### Deploy the helm chart
-```
-# From outside the tilesets chart directory
-helm install tilesets ./tilesets
-```
