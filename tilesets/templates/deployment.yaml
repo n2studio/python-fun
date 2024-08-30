@@ -16,6 +16,13 @@ spec:
     spec:
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets }}
+      initContainers:
+      - name: fix-permissions
+        image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
+        command: ["sh", "-c", "uname -a; df -h;"]
+        volumeMounts:
+            - mountPath: /tiled/tilesets
+              name: {{ .Values.deployment.appLabel }}-pv-storage
       containers:
         - env:
           image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
@@ -36,7 +43,7 @@ spec:
             - mountPath: /tiled/config
               name: {{ .Release.Name }}-config
           # Using command will override the default commands in the container image
-          command: ["sh", "-c", "df -h;"]
+          command: ["sh", "-c", "uname -a; df -h; tail -f /dev/null;"]
       restartPolicy: Always
       volumes:
         - name: {{ .Values.deployment.appLabel }}-pv-storage
