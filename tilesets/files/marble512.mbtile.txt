@@ -1,1 +1,3 @@
-Test file
+Line 1 of marble512.mbtile.txt
+Line 2 of marble512.mbtile.txt
+Line 3 EOF of marble512.mbtile.txt
