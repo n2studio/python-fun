@@ -26,10 +26,10 @@ spec:
           resources:
             limits:
               cpu: 500m
-              memory: 2Gi
+              memory: 2G
             requests:
-              cpu: 150m
-              memory: 500MiB
+              cpu: 200m
+              memory: 500M
           volumeMounts:
             - mountPath: /tiled/tilesets
               name: {{ .Values.deployment.appLabel }}-pv-storage
