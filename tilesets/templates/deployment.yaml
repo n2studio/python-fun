@@ -35,7 +35,8 @@ spec:
               name: {{ .Values.deployment.appLabel }}-pv-storage
             - mountPath: /tiled/config
               name: {{ .Release.Name }}-config
-          command: ["/usr/bin/wget","--no-check-certificate","{{ .Values.tilesetURL }}"]
+          #command: ["/usr/bin/wget","--no-check-certificate","{{ .Values.tilesetURL }}"]
+          command: ["ls","-lah","/tiled/config"]
       restartPolicy: Always
       volumes:
         - name: {{ .Values.deployment.appLabel }}-pv-storage
