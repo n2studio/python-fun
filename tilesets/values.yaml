@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 
 deployment:
-  image: myimage
-  tag: 0.1
+  image: docker.io/bitnami/bitnami-shell
+  tag: 10-debian-10-r305
   appLabel: tilesets
   #storageSize: 20Gi
   namespace: minerva-dev
