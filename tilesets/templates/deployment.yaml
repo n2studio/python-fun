@@ -17,10 +17,10 @@ spec:
       imagePullSecrets:
         - name: {{ .Values.imagePullSecrets }}
       initContainers:
-      - name: fix-permissions
-        image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
-        command: ["sh", "-c", "uname -a; df -h;"]
-        volumeMounts:
+        - name: download-tilesets
+          image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
+          command: ["sh", "-c", "uname -a; df -h;"]
+          volumeMounts:
             - mountPath: /tiled/tilesets
               name: {{ .Values.deployment.appLabel }}-pv-storage
       containers:
