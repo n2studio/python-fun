@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 
 deployment:
-  image: ironbank/opensource/nginx/nginx-alpine
-  tag: 1.26.1
+  image: myimage
+  tag: 0.1
   appLabel: tilesets
   #storageSize: 20Gi
   namespace: minerva-dev
