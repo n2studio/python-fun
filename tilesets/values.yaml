@@ -17,7 +17,7 @@ tilesetsPVC:
     pvcSize: 20Gi
 
 #To be overridden
-imagePullSecrets: artifacts.trmc.osd.mil-minerva-docker   #neil-dockerhub-image-pull-secret
+imagePullSecrets: neil-trmc-artifactory  #artifacts.trmc.osd.mil-minerva-docker
 #imagePullUrl: docker-registry.default.svc:5000/minerva-dev/  # docker.io/library/   
 imagePullUrl: artifacts.trmc.osd.mil/minerva-docker/
 tilesetUrl: http://www.n2studio.com/home/homeart1.jpg
