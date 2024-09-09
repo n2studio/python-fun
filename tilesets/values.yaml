@@ -13,8 +13,8 @@ tilesetsPVC:
   appLabel: tilesets-pv-claim
   tilesetsPV:
     pvName: tilesets-pv
-    storageClass: glusterfs-storage-retain  #glusterfs-storage-minerva-retain
-    pvcSize: 20Gi
+    storageClass: longhorn   #glusterfs-storage-retain
+    pvcSize: 1Gi
 
 #To be overridden
 imagePullSecrets: neil-trmc-artifactory  #artifacts.trmc.osd.mil-minerva-docker
