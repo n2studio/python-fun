@@ -6,7 +6,7 @@ metadata:
     helm.sh/resource-policy: keep
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce   #ReadWriteMany
   storageClassName: {{ .Values.tilesetsPVC.tilesetsPV.storageClass }}
   resources:
     requests:
