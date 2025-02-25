@@ -19,6 +19,7 @@ spec:
       initContainers:
         - name: download-tilesets
           image: {{ .Values.imagePullUrl }}{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
+          # e.g. image: artifacts.trmc.osd.mil/minerva-docker/docker.io/busybox:latest
           # proof of concept showing use of wget to copy data into the pvc mount
           command: ["sh", "-c", "uname -a; df -h; wget -P /tiled/tilesets http://www.n2studio.com/home/homeart1.jpg; ls -lah /tiled/tilesets/"]
           volumeMounts:
